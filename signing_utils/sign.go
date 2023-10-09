@@ -5,7 +5,6 @@ import (
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/sha256"
-	// "log"
 )
 
 func HashSha256(msg string) []byte {
@@ -31,15 +30,14 @@ func Sign(msg string) SignedMessage {
 	msgHashSum := HashSha256(msg)
 
 	// In order to generate the signature, we provide a random number generator,
-	// our private key, the hashing algorithm that we used, and the hash sum
-	// of our message
+	// our private key, the hashing algorithm that we used, and the hash sum of our message
 	signature, err := rsa.SignPSS(rand.Reader, privateKey, crypto.SHA256, msgHashSum, nil)
 	if err != nil {
 		panic(err)
 	}
 
-	signed_msg := SignedMessage {
-		Message: msg,
+	signed_msg := SignedMessage{
+		Message:   msg,
 		Publickey: publicKey,
 		Signature: signature,
 	}

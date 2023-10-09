@@ -51,8 +51,7 @@ func VerifySignature(signed_msg SignedMessage) bool {
 		log.Println("Could not verify signature: ", err)
 		return false
 	}
-	// If we don't get any error from the `VerifyPSS` method, that means our
-	// signature is valid
+	// If we don't get any error from the `VerifyPSS` method, that means our signature is valid
 	log.Println("Signature Verified.")
 	return true
 }

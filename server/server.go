@@ -1,10 +1,6 @@
-// main.go
-
 package main
 
-// import the package we need to use
 import (
-	// signing_utils "digital-signing-project/greeting"
 	"digital-signing-project/signing_utils"
 	"log"
 	"net"
@@ -22,15 +18,14 @@ func main() {
 		port = args[0]
 	}
 
-	// set a HTTP request handle function for path /greeting and registrate it
+	// set a HTTP request handle function for path /verify_signature and register it
 	http.HandleFunc("/verify_signature", signing_utils.HandleMessage)
 
 	// create server at localhost:8080 and using tcp as the network
-	listener, err := net.Listen("tcp", ":" + port)
+	listener, err := net.Listen("tcp", ":"+port)
 
 	log.Printf("Server listening on port %s", port)
 
-	// if recieve error, record it and exit the program
 	if err != nil {
 		log.Fatal(err)
 	}

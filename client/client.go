@@ -1,11 +1,10 @@
-// main.go
+// client.go
 
 package main
 
-// import the package we need to use
 import (
 	"bytes"
-	signing_utils "digital-signing-project/signing_utils"
+	"digital-signing-project/signing_utils"
 	"encoding/json"
 	"io"
 	"log"
