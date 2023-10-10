@@ -8,9 +8,9 @@ import (
 )
 
 func HashSha256(msg string) []byte {
-	msg_bytes := []byte(msg)
+	msgBytes := []byte(msg)
 	msgHash := sha256.New()
-	_, err := msgHash.Write(msg_bytes)
+	_, err := msgHash.Write(msgBytes)
 	if err != nil {
 		panic(err)
 	}
@@ -36,11 +36,11 @@ func Sign(msg string) SignedMessage {
 		panic(err)
 	}
 
-	signed_msg := SignedMessage{
+	signedMsg := SignedMessage{
 		Message:   msg,
 		Publickey: publicKey,
 		Signature: signature,
 	}
 
-	return signed_msg
+	return signedMsg
 }

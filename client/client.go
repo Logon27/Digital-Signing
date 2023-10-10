@@ -1,5 +1,3 @@
-// client.go
-
 package main
 
 import (
@@ -14,23 +12,28 @@ import (
 
 func main() {
 	args := os.Args[1:]
+	var port string
 	if len(args) <= 0 {
-		panic("go run client <Message>")
+		panic("go run client <message> <port>")
+	} else if len(args) == 1 {
+		log.Println("Defaulting to port 8080.")
+		port = "8080"
+	} else {
+		port = args[1]
 	}
 	msg := args[0]
 
-	signed_msg := signing_utils.Sign(msg)
+	signedMsg := signing_utils.Sign(msg)
 
-	// Marshal it into JSON prior to requesting
-	msgJSON, err := json.Marshal(signed_msg)
+	// Marshal signed message into JSON prior to requesting
+	msgJSON, err := json.Marshal(signedMsg)
 
 	if err != nil {
 		panic("Json Marshal parse failed.")
 	}
 
 	// Make request with marshalled JSON as the POST body
-	resp, err := http.Post("http://localhost:8080/verify_signature", "application/json",
-		bytes.NewBuffer(msgJSON))
+	resp, err := http.Post("http://localhost:"+port+"/verify_signature", "application/json", bytes.NewBuffer(msgJSON))
 
 	if err != nil {
 		panic("Could not make POST request to localhost")

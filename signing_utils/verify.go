@@ -34,14 +34,13 @@ func HandleMessage(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func VerifySignature(signed_msg SignedMessage) bool {
-
+func VerifySignature(signedMsg SignedMessage) bool {
 	hash := sha256.New()
-	hash.Write([]byte(signed_msg.Message))
+	hash.Write([]byte(signedMsg.Message))
 	msgHashSum := hash.Sum(nil)
 
-	signature := signed_msg.Signature
-	publicKey := signed_msg.Publickey
+	signature := signedMsg.Signature
+	publicKey := signedMsg.Publickey
 
 	// To verify the signature, we provide the public key, the hashing algorithm
 	// the hash sum of our message and the signature we generated previously

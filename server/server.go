@@ -32,5 +32,4 @@ func main() {
 
 	// setup HTTP connection for the listener of the server
 	http.Serve(listener, nil)
-
 }
