@@ -14,7 +14,7 @@ func main() {
 	args := os.Args[1:]
 	var port string
 	if len(args) <= 0 {
-		panic("go run client <message> <port>")
+		panic("go run client.go <message> <port>")
 	} else if len(args) == 1 {
 		log.Println("Defaulting to port 8080.")
 		port = "8080"
