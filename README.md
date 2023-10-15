@@ -8,7 +8,7 @@ go run server/server.go
 go run client/client.go "Your Message"
 ```
 
-### The Program Flow
+## Typical Signing Flow
 
 - User generates a message
 - User generates a public and private key.
@@ -22,7 +22,12 @@ go run client/client.go "Your Message"
 - Then the server compares the decrypted hash value with the hash calculated locally.
 - If both match then the message is verified. if there is a mismatch then the message cannot be trusted.
 
-### The Message Struct
+### Flow Alternations For This Program
+
+- The public key is shared with the recipient by sending it directly in the message. This is not secure, but makes the implementation easier and independent of the file system.
+- The signature decryption of the hash and comparison against the calculated function is done by a single go function called VerifyPSS. The program still performs the sets in this order, but this abstraction makes it less obvious.
+
+## The Message Struct
 
 ```go
 type SignedMessage struct {
