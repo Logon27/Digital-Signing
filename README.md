@@ -10,7 +10,7 @@ go run client/client.go "Your Message"
 
 ## Typical Signing Flow
 
-- User generates a message
+- User generates a message to send.
 - User generates a public and private key.
 - Public key is shared with the recipient (the server) through some secure means.
 - The message is hashed using a hashing algorithm of your choice.
@@ -20,7 +20,7 @@ go run client/client.go "Your Message"
 - The server decrypts the signature using the public key to produce the hash.
 - The server then hashes the contents of the message itself with the same hashing algorithm.
 - Then the server compares the decrypted hash value with the hash calculated locally.
-- If both match then the message is verified. if there is a mismatch then the message cannot be trusted.
+- If both match then the message is verified. If there is a mismatch then the message cannot be trusted.
 
 ### Flow Alternations For This Program
 
